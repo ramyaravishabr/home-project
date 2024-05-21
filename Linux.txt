@@ -1,0 +1,45 @@
+1.Provide steps to create a directory inside a directory where the parent directory does not exist?
+Building a structure with multiple subdirectories using mkdir requires adding the -p option. This ensures that mkdir adds any missing parent directories in the process
+
+2.How to install a package on a Linux server when there is no internet connection?
+Use apt-offline
+use scp to copy the deb file onto your offline server.
+sudo dpkg -i apt-offline*something.deb on the server.
+generate a request for a package index update and consequent installation of a package on the offline machine: sudo apt-offline set --install-packages PACKAGENAME --update apt-offline.sig.
+
+3.How to access specific folders of Server A from Server B and Server C
+SSH (Secure Shell):
+Using SSH, you can securely access files and folders on Server A from Server B and Server C.
+
+ssh serverA@174.26.4.0
+ssh serverB@XXXXX
+ssh serverC@xxxx
+
+4.How to check all the running processes from a server?
+ using ps command we can check all the running processs from server,
+
+5.Provide the command to delete all the files older than X days inside a specific directory
+ with the help of this below command,
+command: find /var/log -type f -mtime +10 -delete
+explination of above command:to delete all files older than 7 days in the directory /var/log, 
+
+6.Create a shell script to identify the process ID a. script should as a user input for process ID b. If the process exists, the script should print the process ID and exit c. If the process doesn't exist script should print the process doesn't exist and asks for another input
+
+#!/bin/bash
+
+while true; do
+    # Prompt user for process ID
+    read -p "Enter process ID: " pid
+    
+    # Check if the process exists
+    if ps -p $pid > /dev/null; then
+        echo "Process ID $pid exists."
+        exit 0
+    else
+        echo "Process ID $pid does not exist. Please try again."
+    fi
+done
+
+
+
+
