@@ -1,0 +1,48 @@
+1.What are different types of services?
+
+Cluster IP Service:
+1. we can expose the service inside the cluster.
+2.This service is suitable for communication between different components within the cluster.
+
+Node port :
+1.This makes the service accessible from outside the cluster.
+2. it does not having static ip.
+
+Load Balancer Service:
+ 1.Load Balancer service exposes the service using a cloud provider's load balancer.
+ 2.This type of service is typically used when you need to expose the service to the internet.
+
+
+2.What is a pod ?
+The Pod is the smallest deployable unit, its holds application containers,
+pods makes two containers are communication, each  using localhost communication bit faster,
+
+3.Create a pod with the above created custom image when a pod dies k8s should automatically restart?
+
+with the help this command
+kubectl rollout restart deploy  , it will kill pods and  restart automaticaly
+
+4.How to access the custom application with a specific port?
+
+Set Up Your Application to Use the Specific Port
+1.Choose a port number, like 8080, for your application.
+2.update your application seetings on javascript ex node.js or .yml file
+apiVersion: v1
+kind: Service
+metadata:
+    name: gamutkart-service
+    labels:
+      app: gamutkart-app
+spec:
+  selector:
+    app: gamutkart-app
+  type: NodePort
+  ports:
+  - nodePort: 31000
+    port: 8080
+    targetPort: 8080
+3. Adjust Firewall and Network Settings.
+4. Access the Application:http://192.168.1.100:3000
+
+
+
