@@ -1,0 +1,78 @@
+1. What is docker and why do we need it?
+  Docker is an open-source platform that automates the deployment, scaling, and management of applications within lightweight, portable containers. Containers package an application and its dependencies together, ensuring that it runs consistently across different computing environments.
+why we need it ?
+1.Consistency Across Environments: Imagine container as a lightweight preinstalled box, with all package, dependencies, software required by your application, just deploy the production with minimal configuration
+2. Portability: Containers can run on any system that supports Docker, including different operating systems and cloud providers.
+3. Efficiency: Containers can start up in seconds, compared to the minutes it often takes to boot a VM.
+4.Improved CI/CD Workflows: Continuous Integration/Continuous Deployment: Docker integrates seamlessly with CI/CD pipelines, enabling automated testing, integration, and deployment.
+5.Security:Containers provide an additional layer of isolation between the application and the host system, enhancing security.
+
+NOTE :
+1.user can quickly set up local environment we can include all dependencies.
+2.is there any issue ? don't spend time to troubleshoot just throw the machine which was the issue way and create instantly,
+
+
+2. Write a docker file for a sample Java/python application?
+Docker file : Docker file is a text document that the set of instruction layer by layer build docker image
+
+	-------------
+        FROM ubuntu:16.04 
+	RUN apt-get update
+	RUN apt-get install -y openjdk-8-jdk
+	ENV JAVA_HOME /usr
+	ADD apache-tomcat-8.5.38.tar.gz /root
+	COPY target/gamutkart.war /root/apache-tomcat-8.5.38/webapps
+	ENTRYPOINT /root/apache-tomcat-8.5.38/bin/startup.sh && bash
+FROM :Is used to set base image for upcoming instruction
+RUN: Execute instruction on the top of current image.
+ENTRY POINT: We are specify always it will start when container run,
+ADD: Provide additional features like remote URL  and for extraction support,
+Copy: provide just basic support copying, local file into container
+
+
+3.What is the docker lifecycle?
+Here are the key stages in the Docker container life cycle:
+1.Creation: Docker container is created from a Docker image using the docker create command.
+2.Starting:The docker start command transitions the container from the created or stopped state to the running state.
+3.Running:The container is actively executing its application or service.
+4.Pausing:When paused, the container's state is preserved, but its processes are frozen.
+5.Stopping:The container transitions to the stopped state.
+6.Restarting:Containers can be restarted using the docker restart command.
+7.Removing:The docker rm command removes a stopped container, freeing up resources.
+
+
+4. What is the difference between an image and a container?
+Docker image:
+1. Docker image is a lightweight, standalone, and executable software package that includes everything needed to run a piece of software, including the code, runtime, libraries, environment variables, and configuration files.
+2.Docker images are immutable and read-only. Once an image is created, it cannot be altered. Changes require creating a new image
+3.Images are built in layers, with each layer representing a set of file system changes (e.g., added/removed files) and a corresponding command in the Dockerfile.
+5.Images are created using Dockerfiles, which contain a series of instructions for building the image. The docker build command processes these instructions to create the image.
+
+Docker Container:
+1.A Docker container is a runnable instance of a Docker image. Containers include everything needed to run an application and are isolated from the host system and each other.
+2.Containers are mutable. They can be started, stopped, moved, and deleted. Changes made to a container do not affect the original image and are not saved after the container is removed unless explicitly committed to a new image
+3.Containers share the base layers of the image from which they were created but have a top writable layer where changes are made during runtime.
+4.Containers are created from images using the docker run command, which starts the container. Management commands include docker start, docker stop, docker restart, and docker rm.
+5.Containers are used to run applications in isolated environments, ensuring consistency across different development, testing, and production stages.
+
+
+
+5.How to check docker container logs? Provide the command for the same
+check the logs of a Docker container,  t docker logs command. This command retrieves the logs of a container, which can help you debug and monitor your containerized 
+
+command:
+docker logs [OPTIONS] CONTAINER
+Common [Options]:
+-f, --follow: Follow log output, similar to tail -f.
+--since: Show logs since a specific timestamp ( --since=10m for the last 10 minutes).
+--tail: Number of lines to show from the end of the logs (e.g., --tail=100).
+
+
+
+
+
+
+
+
+
+
