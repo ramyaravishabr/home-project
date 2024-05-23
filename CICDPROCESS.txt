@@ -1,0 +1,50 @@
+1.Set up a pipeline (Github actions/Gitlab runner/ Jenkins or any open source tool) to build, test, create a docker image, publish and deploy to k8s. Use the application present in this public repo https://github.com/apiwizlabs/wizdesk.
+
+steps:
+
+1.jenkins Installed: Ensure you have Jenkins installed and running.
+Jenkins Plugins: Install the following Jenkins plugins:
+Docker Pipeline
+Kubernetes
+GitHub Integration
+Pipeline
+Jenkins Pipeline Configuration
+
+2.Create a New Jenkins Pipeline Job:
+Open Jenkins and click on "New Item".
+Select "Pipeline" and name your job (e.g., "wizdesk-pipeline").
+Pipeline Script:
+Add the following pipeline script to the job configuration. This script will:
+Clone the repository.
+Install dependencies and run tests.
+Build the application.
+Build and push the Docker image.
+Deploy the application to Kubernetes.
+
+pipeline groovy script: available in git repo https://github.com/ramyaravishabr/home-project.git
+
+Configuration Steps
+Add Credentials in Jenkins:
+
+Docker Hub Credentials:
+
+Go to "Manage Jenkins" > "Manage Credentials" > "Global".
+Add credentials of type "Username with password".
+Set ID as docker-username and docker-password.
+Kubeconfig:
+
+Go to "Manage Jenkins" > "Manage Credentials" > "Global".
+Add credentials of type "Secret text".
+Set ID as kubeconfig and paste the content of your ~/.kube/config file.
+Docker and Kubernetes Configuration:
+
+Make sure Docker is installed and running on your Jenkins nodes.
+Ensure kubectl is installed and configured to access your Kubernetes cluster.
+
+Kubernetes Deployment Configuration
+
+Ensure you have the Kubernetes deployment configuration file (k8s-deployment.yml) and service configuration file (k8s-service.yml) in your repository.
+deploymentservice.yml:available in git repo https://github.com/ramyaravishabr/home-project.git
+
+
+
